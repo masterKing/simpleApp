@@ -25,8 +25,6 @@
     
     ViewController *controller1 = [[ViewController alloc] init];
     UINavigationController *navgation1 = [[UINavigationController alloc] initWithRootViewController:controller1];
-//    UIViewController *controller1 = [[UIViewController alloc] init];
-//    controller1.view.backgroundColor = [UIColor redColor];
     navgation1.tabBarItem.title = @"新闻";
     navgation1.tabBarItem.image = [UIImage imageNamed:@"page"];
     navgation1.tabBarItem.selectedImage = [UIImage imageNamed:@"page_selected"];
