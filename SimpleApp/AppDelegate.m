@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "ViewController.h"
+#import "WKWebViewController.h"
 
 @interface AppDelegate ()
 
@@ -41,7 +42,7 @@
     controller3.tabBarItem.image = [UIImage imageNamed:@"like"];
     controller3.tabBarItem.selectedImage = [UIImage imageNamed:@"like_selected"];
     
-    UIViewController *controller4 = [[UIViewController alloc] init];
+    WKWebViewController *controller4 = [[WKWebViewController alloc] init];
     controller4.view.backgroundColor = [UIColor blueColor];
     controller4.tabBarItem.title = @"我的";
     controller4.tabBarItem.image = [UIImage imageNamed:@"home"];
