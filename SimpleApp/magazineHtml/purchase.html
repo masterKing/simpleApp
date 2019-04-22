@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <title>Document</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no">
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="purchase.css">
+    <style>
+    #before_compile{
+        width:100vw;
+        height:100vh;
+        position:relative;
+        overflow:hidden;
+    }
+        #banner_holder{
+            position: absolutep;
+            left: 0;
+            top: 0;
+            width: 100vw;
+            height: auto;
+        }
+        .banner-scroll .bd li img{
+            width: 100%;
+            height: 100%;
+            vertical-align: top;
+        }
+        .banner-scroll .bd .tempWrap{
+            height: 8.106667rem;
+        }
+        .banner-scroll .book-list{
+            height: 8.106667rem;
+        }
+        .book-list li{
+            vertical-align: top!important;
+        }
+        
+    </style>
+</head>
+
+<body>
+<div id="before_compile">
+    <img id='banner_holder' src="" alt="">
+    <img src="compile_pic.png" alt="">
+</div>
+<div class="purchase-wrap" id="compiled" style="display: none;">
+    <div id="slideBox" class="banner-scroll">
+        <div class="bd">
+            <ul class="book-list">
+
+            </ul>
+        </div>
+        <div class="hd">
+            <ul></ul>
+            <span></span>
+        </div>
+    </div>
+    <div class="goods-intro">
+        <div class="book-info-box">
+
+        </div>
+        <div class="book-label">
+
+        </div>
+        <div class="goods-status">
+
+        </div>
+    </div>
+    <div class="more-intro-box">
+        <div class="get-buy-info"></div>
+        <div class="get-publish-info"></div>
+    </div>
+    <div class="goods-info-box">
+
+    </div>
+    <dl class="common-problem">
+        <dt>常见问题</dt>
+        <dd class="about-send-goods">
+
+        </dd>
+        <dd class="about-return-goods">
+
+        </dd>
+    </dl>
+    <div class="buy-btn-box">
+        <div class="sum-money">金额<span id="sum_money"></span></div>
+        <div id="buy_btn" class="go-buy"></div>
+    </div>
+</div>
+<div class="turn-top"></div>
+<!-- 弹框 -->
+<div class="pop-bg" style="display: none;cursor: pointer;"></div>
+<div class="pop-publish" style="display: none;">
+    <p class="title"></p>
+    <ul>
+
+    </ul>
+    <div class="confirm-btn">确定</div>
+</div>
+<div class="pop-purchas" style="display: none;">
+    <p class="title"></p>
+    <div class="content">
+
+    </div>
+    <div class="confirm-btn">确定</div>
+</div>
+</body>
+<script src="jquery-1.8.3.min.js"></script>
+<script src="TouchSlide.1.1.js"></script>
+<script>
+    var y = null; // 轮播定时器，提出来方便清除
+    var bannerHolder =(!window.location.hash)? 'pic_default.png' :window.location.hash;
+    bannerHolder = bannerHolder.slice(bannerHolder.indexOf('#')+1)
+    $("#banner_holder").attr('src',bannerHolder)
+    //LoadData();
+    function LoadData(){
+        doLoadData(getBookData());
+    };
+    function doLoadData(data){
+        if (data && !$.isEmptyObject(data)) {
+            $("#before_compile").hide().siblings('#compiled').show();
+            var str_banner='',
+                str_holder='',
+                str_bookInfo='',
+                str_country='',
+                str_saleStatus='',
+                str_purchaseInfo='',
+                str_publishInfo='',
+                str_goodsInfo='',
+                str_sendGoods='',
+                str_returnGoods='',
+                str_sumMoney='';
+            //banner部分
+            if (data.banner && data.banner.length>0) {
+                if (typeof bannerHolder != 'undefined' && bannerHolder != '') {
+                    str_holder = bannerHolder;
+                }else{
+                    str_holder = 'purchase_default.png';
+                }
+                data.banner.forEach(function(item,index,arr){
+                    if (index == 0) {
+                        str_banner+='<li><a href="http://m.fxeye.com?imgIndex='+index+'"><img class="origin-pic" style="display:none;"/><img class="holder-img" src="'+str_holder+'"/></a></li>';
+                    }else{
+                        str_banner+='<li><a href="http://m.fxeye.com?imgIndex='+index+'"><img class="origin-pic" style="display:none;"/><img src="purchase_default.png"/></a></li>';
+                    }
+                })
+                $("#slideBox").find(".book-list").html(str_banner);
+            }else{
+                $("#slideBox").find(".book-list").html('<li><a href="http://m.fxeye.com?imgIndex=0"><img src="purchase_default.png"/></a></li>');
+            }
+            ban_scroll();
+            bannerReplace(data.banner);
+            // 价格和图书标题
+            str_bookInfo += '<div class="price-box"><p class="now-price">';
+            if (Number(data.current_price)>0) {
+                str_bookInfo += data.money_type;
+                str_sumMoney += data.money_type;
+            }
+            str_bookInfo += '<strong>'+data.current_price+'</strong></p>';
+            if (parseInt(data.current_price)>99999) {
+                str_sumMoney += '<strong class="small">'+data.current_price+'</strong>';
+            }else{
+                str_sumMoney += '<strong>'+data.current_price+'</strong>';
+            }
+            $("#sum_money").html(str_sumMoney);
+            if (data.originol_price) {
+                str_bookInfo += '<p class="original-price">原价<span>';
+                if (Number(data.originol_price)>0) {
+                    str_bookInfo += data.money_type;
+                }
+                str_bookInfo += data.originol_price+'</span></p>';
+            }
+            str_bookInfo += '</div><div class="book-info"><h3>'+data.book_title+'</h3><p>';
+            str_bookInfo += data.book_intro+'</p></div>';
+            $(".book-info-box").html(str_bookInfo);
+            //全球购
+            if(data.overseas){
+                str_country += '<span class="label-tit">'+data.overseas+'</span>';
+            }
+            if (data.country_label && data.country_label.length>0) {
+                data.country_label.forEach(function(item,index,arr){
+                    str_country += '<span>'+item+'</span>';
+                })
+
+                $(".book-label").html(str_country);
+            }
+            // 销售额和发货地址
+            str_saleStatus += '<div class="col-l">销量：<span>'+data.sales_volume+'</span></div><div class="col-r">发货地：<span>'+data.book_address+'</span></div>';
+            $(".goods-status").html(str_saleStatus);
+            
+            $(".get-buy-info").html(data.purchase_title+'<span>查看</span>');
+            $(".get-publish-info").html(data.publish_title+'<span>查看</span>');
+            // 购买说明
+            if (data.purchase_info) {
+                str_purchaseInfo += '<p>'+data.purchase_info+'</p>';
+                if (data.purchase_title) {
+                    $(".pop-purchas").find(".title").html(data.purchase_title);
+                }
+                $(".pop-purchas").find(".content").html(str_purchaseInfo);
+            }else{
+                $(".get-buy-info").hide();
+            }
+            // 出版信息
+            if (data.publish_info) {
+                if (data.publish_title) {
+                    $(".pop-publish").find(".title").html(data.publish_title);
+                }
+                if (data.publish_info.book_name) {
+                    str_publishInfo += '<li><span>书名</span>'+ data.publish_info.book_name +'</li>';
+                }
+                if (data.publish_info.book_code) {
+                    str_publishInfo += '<li><span>ISBN/刊号</span>'+ data.publish_info.book_code +'</li>';
+                }
+                if (data.publish_info.book_author) {
+                    str_publishInfo += '<li><span>作者</span>'+ data.publish_info.book_author +'</li>';
+                }
+                if (data.publish_info.publish_time) {
+                    str_publishInfo += '<li><span>出版时间</span>'+ data.publish_info.publish_time +'</li>';
+                }
+                if (data.publish_info.book_concern) {
+                    str_publishInfo += '<li><span>出版社</span>'+ data.publish_info.book_concern +'</li>';
+                }
+                if (data.publish_info.book_size) {
+                    str_publishInfo += '<li><span>开本</span>'+ data.publish_info.book_size +'</li>';
+                }
+                if (data.publish_info.book_paper) {
+                    str_publishInfo += '<li><span>纸张</span>'+ data.publish_info.book_paper +'</li>';
+                }
+                if (data.publish_info.book_packing) {
+                    str_publishInfo += '<li><span>包装</span>'+ data.publish_info.book_packing +'</li>';
+                }
+                if (data.publish_info.is_suit) {
+                    str_publishInfo += '<li><span>是否套装</span>'+ data.publish_info.is_suit +'</li>';
+                }
+                if (data.publish_info.price) {
+                    str_publishInfo += '<li><span>定价</span>'+ data.publish_info.price +'</li>';
+                }
+                $(".pop-publish").find("ul").html(str_publishInfo);
+            }else{
+                $(".get-publish-info").hide();
+            }
+            if (str_publishInfo == '') {$(".get-publish-info").hide();}
+            // 商品详情
+            if (data.goods_info) {
+                str_goodsInfo += '<p class="title">商品详情</p><p>'+data.goods_info+'</p>';
+                $(".goods-info-box").html(str_goodsInfo);
+                $(".goods-info-box").find("a").attr({"target":"_self","href":"javascript:;"});
+                holderImg();
+            }else{
+                $(".goods-info-box").hide();
+            }
+            // 常见问题 str_sendGoods
+            if (data.send_goods_info) {
+                if (data.send_goods_title) {
+                    str_sendGoods += '<h4>'+ data.send_goods_title +'</h4>';
+                }
+                str_sendGoods += '<p>'+ data.send_goods_info +'</p>';
+                $(".common-problem .about-send-goods").html(str_sendGoods);
+            }
+            if (data.return_goods_info) {
+                if (data.return_goods_title) {
+                    str_returnGoods += '<h4>'+ data.return_goods_title +'</h4>';
+                }
+                str_returnGoods += '<p>'+ data.return_goods_info +'</p>';
+                $(".common-problem .about-return-goods").html(str_returnGoods);
+            }
+            if (!data.send_goods_info && !data.return_goods_info) {
+                $(".common-problem").hide();
+            }
+            if (data.book_inventory>0) {
+                $('#buy_btn').html('<a href="http://m.fxeye.com#gobuy" style="background:'+data.ButtonColor+'">'+data.ButtonName+'</a>');
+            }else{
+                $('#buy_btn').html('已售罄');
+            }
+            
+        }
+    };
+    function bannerReplace(url){
+        var ban_img = $(".origin-pic");
+        for(var i = 0;i< ban_img.length;i++){
+            (function(i){
+                ban_img[i].onload = function(){
+                    ban_img[i].onload = null;
+                    $(ban_img[i]).show().siblings('img').fadeOut(1600);
+                };
+                $(ban_img[i]).attr('src',url[i]);
+            }(i));
+        }
+    }
+    var oriImages;
+    function ReplaceImg() {//获得图片数据
+        return oriImages;
+    }
+    function gerOriginImage() {
+        var listimg = $(".goods-info-box img");
+        var listimgshuzu = [];
+        if (listimg.length>0) {
+            $.each(listimg, function(i, item) {
+                var src = $(item).attr("src");
+                if (src != undefined && src != "") {
+                    $(item).attr("num", i);
+                    listimgshuzu.push(src);
+                }
+            });
+        }
+        oriImages = listimgshuzu;
+        return listimgshuzu;
+    }
+    function holderImg(){
+        var ori_src = gerOriginImage();
+        var conimgs= $(".goods-info-box img");
+        if (conimgs.length<1) return;
+        var ori_imgs = [];
+        for(var i = 0;i<conimgs.length;i++){
+            (function(i){
+                $(conimgs[i]).attr("src","pic_default.png");
+                $(conimgs[i]).css({'width':'100%','height':'auto'});
+                ori_imgs[i] = new Image();
+
+                ori_imgs[i].onload = function(){
+                    ori_imgs[i].onload = null;
+                    conimgs[i].replaceWith(this);
+                };
+                ori_imgs[i].setAttribute("num",i);
+                ori_imgs[i].src = ori_src[i];
+            }(i));
+        }
+    }
+    $(document).on("click", ".goods-info-box img", function() {
+        var num = $(this).attr("num");
+        window.location.href = "http://m.fxeye.com?imgnum=" + num;
+    });
+    function getBookData(){
+        var result = {
+            "banner":['https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1556271897&di=c06e30ce3c4e061f3e3bae3813630ef9&imgtype=jpg&er=1&src=http%3A%2F%2Fpic.rmb.bdstatic.com%2Ff54083119edfb83c4cfe9ce2eeebc076.jpeg','https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1555677069435&di=7f5caefd6e1bf79aa5f86be363533ff1&imgtype=0&src=http%3A%2F%2Ft1.mmonly.cc%2Fuploads%2Ftu%2F201612%2F47%2F109409840.jpg','https://mallimg.fxeye.com/book/2019-03-14/636881630081659790/FBM636881630081659790_728213.png_details'],//banner图
+            "originol_price":"100",
+            "current_price":"999999.0",
+            "money_type":"¥",//币种
+            "book_intro":"加密货币交易所Coinnest因为空投意外损失约500万美元",//书籍标题
+            "book_title":"外汇天眼2019年首刊-中国外汇交易市场年度市场安全交易报告",//书籍副标题
+            "isFree":"0",//是否免费
+            "overseas":"全球直购",
+            "country_label":["中","美","英"],
+            "sales_volume":20155,//销量
+            "book_address":"上海",//发货地址
+            "purchase_title":"购买说明吗明明明",  //新增购买说明标题
+            "publish_title":"出版信息嘻嘻嘻",   //新增出版信息标题
+            "purchase_info":"购买后将会邮寄给您，您可以在购买过程中寻求赞助来减免您该产品为实体书，购买后将会邮寄给您，您可以在购买过程中寻求赞助来减免您该产品为实体书，购买后将会邮寄给您，",//购买说明
+            "book_inventory":"10",//库存
+            "publish_info":{'price':'','book_name':''},
+            "goods_info":'<h3 class="title-text" style="margin: 0px; padding: 0px; font-size: 18px; font-weight: 400;">七星鲁王宫</h3><p>吴邪戴上了三叔的面具，冒充三叔的身份整顿了三叔的产业，那些手下的马仔无不归顺。吴邪带着潘子和小花等人终于到了巴乃的大山中，企图进入张家古楼寻找三叔、胖子和<a target="_blank" href="https://baike.baidu.com/item/%E9%97%B7%E6%B2%B9%E7%93%B6" style="color: rgb(19, 110, 194); text-decoration-line: none;">闷油瓶</a>等人。而在巴乃的村寨中，吴邪他们见到了一个肩膀都融化塌掉的人，并且最终发现，这个人就是二十年前考古队的队员，并由他揭示了张家古楼大山中的秘密，由此，吴邪和胖子再次进入到张家古楼，他们能见到三叔、小花、潘子他们，并且找到自己要找的东西吗？</p><p><br></p>',//商品详情
+            "send_goods_title":"关于发货",  //新增常见问题发货标题
+            "send_goods_info":"投资大师巴菲特说，你在股市赚钱的多少，跟你对投资对象的了。",  //新增常见问题发货详情
+            "return_goods_title":"关于退换货",//新增常见问题退货标题
+            "return_goods_info":"由于本商品具备时效性，一经售出，如无质量问题，概不退换，如因质量可提供换货服务",//新增常见问题退货标题
+            "ButtonName":"免费赠阅",
+            "ButtonColor":"#ff0000"
+        }
+        return result;
+    }
+
+
+    //轮播
+    
+    function ban_scroll(){//顶部图片轮播
+        TouchSlide({
+            slideCell: "#slideBox",
+            titCell: ".hd ul",
+            mainCell: ".bd ul",
+            effect: "left",
+            interTime: 4000,
+            autoPage: true,
+            autoPlay: true
+        });
+        var Olen = $(".banner-scroll .hd ul li").length;
+        $("#slideBox .hd span").html("/" + Olen);
+    };
+    // 信息弹框
+    function closepRolling(){
+        $("html,body").css({'height':"100%", "overflow":"hidden"});
+    }
+    function opennRolling(){
+        $("html,body").css({'height':"auto", "overflow":"scroll"});        
+    }
+    $(document).on("click",".get-buy-info",function(){
+        $(".pop-bg").show();
+        $(".pop-purchas").show();
+        closepRolling();
+    });
+    $(document).on("click",".get-publish-info",function(){
+        $(".pop-bg").show();
+        $(".pop-publish").show();
+        closepRolling();
+    });
+    $(document).on("click",".confirm-btn",function(){
+        $(".pop-bg").hide();
+        $(this).parent().hide();
+        opennRolling();
+    });
+    $(".pop-bg").click(function(){
+        $(this).hide();
+        $(".pop-publish").hide();
+        $(".pop-purchas").hide();
+        opennRolling();
+    });
+    $("").on("touchmove",function(e){e.preventDefault();})
+    // 返回顶部
+    $(window).scroll(function() {
+        if ($(this).scrollTop() > 50) {
+            $('.turn-top').fadeIn();
+        } else {
+            $('.turn-top').fadeOut();
+        }
+    });
+    $(document).on("click", ".turn-top", function() {
+        $('html , body').animate({ scrollTop: 0 }, 300);
+        return !1;
+    });
+</script>
+</html>

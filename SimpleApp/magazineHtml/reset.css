@@ -1,0 +1,43 @@
+/**
+ * @Name     wap样式初始化
+ * @Author   zzc452@163.com
+ * @DateTime 2018-11-08
+ */
+@charset "utf-8";
+*{margin:0;padding:0;}
+html{font-size:10vw;color:#333333;font-family:'Microsoft Yahei','Helvetica Neue',Helvetica,STHeiTi,Arial,sans-serif;}
+
+ol,ul,li{list-style:none;}
+table{border-collapse:collapse;border-spacing:0;}
+caption,th,td{text-align:left;font-weight:normal;}
+
+/* 清除浮动 */
+img{border:none;vertical-align:middle;cursor:pointer;}
+
+/*图片长按*/
+a{text-decoration:none;outline:none;-webkit-tap-highlight-color:transparent;-webkit-tap-highlight-color:rgba(0,0,0,0);}
+
+/* 取消a链接点击时的高亮 */
+a:active{outline:none;text-align:none;}
+img,a{-webkit-touch-callout:none;}
+
+/*ios下取消系统默认功能*/
+em,i{font-style:normal;}
+textarea{resize:none;}
+input::-webkit-outer-spin-button,input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0;}
+input[type="text"],input[type="tel"]{-webkit-tap-highlight-color:rgba(0,0,0,0);-webkit-tap-highlight-color:transparent;}
+
+/* 去除iphone ipad 设备默认按钮样式 */
+input[type=button],input[type=submit],input[type="reset"],input[type=file],button{cursor:pointer;-webkit-appearance:none;}
+
+/* 设置placeholder默认颜色 */
+input::-webkit-input-placeholder,textarea::-webkit-input-placeholder{ /* WebKit browsers */
+color:#ccc;}
+input:-moz-placeholder,textarea:-moz-placeholder{ /* Mozilla Firefox 4 to 18 */
+color:#ccc;opacity:1;}
+input::-moz-placeholder,textarea::-moz-placeholder{ /* Mozilla Firefox 19+ */
+color:#ccc;opacity:1;}
+input:-ms-input-placeholder,textarea:-ms-input-placeholder{ /* Internet Explorer 10+ */
+color:#ccc;}
+.col-l{float:left;}
+.col-r{float:right;}
