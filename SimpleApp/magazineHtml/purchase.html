@@ -116,7 +116,7 @@
     var bannerHolder =(!window.location.hash)? 'pic_default.png' :window.location.hash;
     bannerHolder = bannerHolder.slice(bannerHolder.indexOf('#')+1)
     $("#banner_holder").attr('src',bannerHolder)
-    //LoadData();
+    LoadData();
     function LoadData(){
         doLoadData(getBookData());
     };

@@ -18,7 +18,13 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"purchase" ofType:@"html" inDirectory:@"magazineHtml"];
+    NSURL *url = [NSURL fileURLWithPath:filePath];
     
+    NSURL *finalUrl = [NSURL URLWithString:@"#123" relativeToURL:url];
+    
+    NSURLRequest *urlRequest = [NSURLRequest requestWithURL:finalUrl];
+    [self.webView loadRequest:urlRequest];
 }
 
 /*

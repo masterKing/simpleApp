@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		31BA5A76226E822D00EB3CAF /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31BA5A75226E822D00EB3CAF /* WebKit.framework */; };
 		31BA928622685B880024CF56 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 31BA928522685B880024CF56 /* AppDelegate.m */; };
 		31BA928922685B880024CF56 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31BA928822685B880024CF56 /* ViewController.m */; };
 		31BA928C22685B880024CF56 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 31BA928A22685B880024CF56 /* Main.storyboard */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		31BA5A75226E822D00EB3CAF /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		31BA928122685B880024CF56 /* SimpleApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		31BA928422685B880024CF56 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		31BA928522685B880024CF56 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -40,17 +42,27 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				31BA5A76226E822D00EB3CAF /* WebKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		31BA5A74226E822D00EB3CAF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				31BA5A75226E822D00EB3CAF /* WebKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		31BA927822685B870024CF56 = {
 			isa = PBXGroup;
 			children = (
 				31BA928322685B880024CF56 /* SimpleApp */,
 				31BA928222685B880024CF56 /* Products */,
+				31BA5A74226E822D00EB3CAF /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
