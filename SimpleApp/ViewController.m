@@ -7,44 +7,9 @@
 //
 
 #import "ViewController.h"
+#import "GTNormalTableViewCell.h"
 
-@interface TestView : UIView
-
-@end
-
-@implementation TestView
-
-- (instancetype)init
-{
-    self = [super init];
-    if (self) {
-        self.backgroundColor = [UIColor redColor];
-        NSLog(@"%s",__FUNCTION__);
-    }
-    return self;
-}
-
-//- (void)willMoveToSuperview:(nullable UIView *)newSuperview{
-//    [super willMoveToSuperview:newSuperview];
-//    NSLog(@"%s",__FUNCTION__);
-//}
-//- (void)didMoveToSuperview{
-//    [super didMoveToSuperview];
-//    NSLog(@"%s",__FUNCTION__);
-//}
-//- (void)willMoveToWindow:(nullable UIWindow *)newWindow{
-//    [super willMoveToWindow:newWindow];
-//    NSLog(@"%s",__FUNCTION__);
-//}
-//- (void)didMoveToWindow{
-//    [super didMoveToWindow];
-//    NSLog(@"%s",__FUNCTION__);
-//}
-
-
-@end
-
-@interface ViewController ()
+@interface ViewController () <UITableViewDataSource,UITableViewDelegate>
 
 @end
 
@@ -54,7 +19,7 @@
 {
     self = [super init];
     if (self) {
-        NSLog(@"%s",__FUNCTION__);
+        
     }
     return self;
 }
@@ -64,41 +29,38 @@
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor whiteColor];
     
-    TestView *aTestView = [[TestView alloc] init];
-    aTestView.frame = CGRectMake(100, 100, 100, 100);
-    [self.view addSubview:aTestView];
-    
-    UITapGestureRecognizer *tapped = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapTestView)];
-    [aTestView addGestureRecognizer:tapped];
+    UITableView *aTableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
+    aTableView.dataSource = self;
+    aTableView.delegate = self;
+    aTableView.rowHeight = 120;
+    [self.view addSubview:aTableView];
 }
 
-- (void)didTapTestView{
-    [self.navigationController pushViewController:[ViewController new] animated:YES];
+#pragma mark -
+#pragma mark UITableViewDataSource
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return 20;
 }
 
-- (void)viewWillAppear:(BOOL)animated{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    GTNormalTableViewCell *aCell = [tableView dequeueReusableCellWithIdentifier:@"UITableViewCellID"];
+    if (aCell == nil) {
+        aCell = [[GTNormalTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"UITableViewCellID"];
+    }
+    [aCell layoutTableViewCell];
     
+//    CGFloat red = arc4random_uniform(255) / 255.0;
+//    CGFloat green = arc4random_uniform(255) / 255.0;
+//    CGFloat blue = arc4random_uniform(255) / 255.0;
+//    aCell.backgroundColor = [UIColor colorWithRed:red green:green blue:blue alpha:1.0];
+//    aCell.textLabel.text = [NSString stringWithFormat:@"主标题 - %zd",indexPath.row];
+//    aCell.detailTextLabel.text = @"副标题";
+//    aCell.imageView.image = [UIImage imageNamed:@"video_selected"];
+    return aCell;
 }
 
-- (void)viewDidAppear:(BOOL)animated{
-    
-}
-
-- (void)viewWillDisappear:(BOOL)animated{
-    
-}
-
-- (void)viewDidDisappear:(BOOL)animated{
-    
-}
-
-- (void)viewWillLayoutSubviews NS_AVAILABLE_IOS(5_0){
-    
-}
-
-- (void)viewDidLayoutSubviews NS_AVAILABLE_IOS(5_0){
-    
-}
+#pragma mark -
+#pragma mark UITableViewDelegate
 
 
 @end

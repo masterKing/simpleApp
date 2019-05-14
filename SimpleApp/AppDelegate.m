@@ -8,6 +8,8 @@
 
 #import "AppDelegate.h"
 #import "ViewController.h"
+#import "GTVideoViewController.h"
+#import "GTRecommendViewController.h"
 #import "WKWebViewController.h"
 
 @interface AppDelegate ()
@@ -21,26 +23,18 @@
     // Override point for customization after application launch.
     
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    self.window.backgroundColor = [UIColor whiteColor];
     
     UITabBarController *aTabBarController = [[UITabBarController alloc] init];
     
     ViewController *controller1 = [[ViewController alloc] init];
-    UINavigationController *navgation1 = [[UINavigationController alloc] initWithRootViewController:controller1];
-    navgation1.tabBarItem.title = @"新闻";
-    navgation1.tabBarItem.image = [UIImage imageNamed:@"page"];
-    navgation1.tabBarItem.selectedImage = [UIImage imageNamed:@"page_selected"];
+    controller1.tabBarItem.title = @"新闻";
+    controller1.tabBarItem.image = [UIImage imageNamed:@"page"];
+    controller1.tabBarItem.selectedImage = [UIImage imageNamed:@"page_selected"];
     
-    UIViewController *controller2 = [[UIViewController alloc] init];
-    controller2.view.backgroundColor = [UIColor grayColor];
-    controller2.tabBarItem.title = @"视频";
-    controller2.tabBarItem.image = [UIImage imageNamed:@"video"];
-    controller2.tabBarItem.selectedImage = [UIImage imageNamed:@"video_selected"];
+    GTVideoViewController *controller2 = [[GTVideoViewController alloc] init];
     
-    UIViewController *controller3 = [[UIViewController alloc] init];
-    controller3.view.backgroundColor = [UIColor greenColor];
-    controller3.tabBarItem.title = @"推荐";
-    controller3.tabBarItem.image = [UIImage imageNamed:@"like"];
-    controller3.tabBarItem.selectedImage = [UIImage imageNamed:@"like_selected"];
+    GTRecommendViewController *controller3 = [[GTRecommendViewController alloc] init];
     
     WKWebViewController *controller4 = [[WKWebViewController alloc] init];
     controller4.view.backgroundColor = [UIColor blueColor];
@@ -48,9 +42,11 @@
     controller4.tabBarItem.image = [UIImage imageNamed:@"home"];
     controller4.tabBarItem.selectedImage = [UIImage imageNamed:@"home_selected"];
     
-    [aTabBarController setViewControllers:@[navgation1,controller2,controller3,controller4]];
+    [aTabBarController setViewControllers:@[controller1,controller2,controller3,controller4]];
+    aTabBarController.selectedIndex = 0;
     
-    self.window.rootViewController = aTabBarController;
+    UINavigationController *aNavgationController = [[UINavigationController alloc] initWithRootViewController:aTabBarController];
+    self.window.rootViewController = aNavgationController;
     [self.window makeKeyAndVisible];
     return YES;
 }
