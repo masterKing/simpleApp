@@ -22,10 +22,10 @@
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         [self.contentView addSubview:({
-            self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 15, 280, 50)];
+            self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 15, 300, 50)];
 //            self.titleLabel.backgroundColor = [UIColor redColor];
             self.titleLabel.font = [UIFont systemFontOfSize:16];
-            self.titleLabel.textColor = [UIColor grayColor];
+            self.titleLabel.textColor = [UIColor blackColor];
             self.titleLabel;
         })];
         
@@ -46,7 +46,7 @@
         })];
         
         [self.contentView addSubview:({
-            self.timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(180, 80, 50, 20)];
+            self.timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(150, 80, 50, 20)];
 //            self.timeLabel.backgroundColor = [UIColor redColor];
             self.timeLabel.font = [UIFont systemFontOfSize:12];
             self.timeLabel.textColor = [UIColor grayColor];
@@ -81,17 +81,27 @@
     
     self.commentLabel.text = @"1888评论";
     [self.commentLabel sizeToFit];
-    self.commentLabel.frame = CGRectMake(CGRectGetMaxX(self.sourceLabel.frame) + 15, self.commentLabel.frame.origin.y, self.commentLabel.bounds.size.width, self.commentLabel.bounds.size.height);
+    self.commentLabel.frame = CGRectMake(CGRectGetMaxX(self.sourceLabel.frame) + 15
+                                         , self.commentLabel.frame.origin.y
+                                         , self.commentLabel.bounds.size.width
+                                         , self.commentLabel.bounds.size.height);
     
     self.timeLabel.text = @"三分钟前";
     [self.timeLabel sizeToFit];
-    self.timeLabel.frame = CGRectMake(CGRectGetMaxX(self.commentLabel.frame) + 15, self.timeLabel.frame.origin.y, self.timeLabel.bounds.size.width, self.timeLabel.bounds.size.height);
+    self.timeLabel.frame = CGRectMake(CGRectGetMaxX(self.commentLabel.frame) + 15
+                                      , self.timeLabel.frame.origin.y
+                                      , self.timeLabel.bounds.size.width
+                                      , self.timeLabel.bounds.size.height);
 
     self.rightImageView.image = [UIImage imageNamed:@"timg.jpeg"];
 }
 
 - (void)didClickDeleteButton:(UIButton *)sender{
     NSLog(@"%s",__func__);
+    
+    if ([self.delegate respondsToSelector:@selector(tableViewCell:didClickedDeleteButton:)]) {
+        [self.delegate tableViewCell:self didClickedDeleteButton:sender];
+    }
 }
 
 @end

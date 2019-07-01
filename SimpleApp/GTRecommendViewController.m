@@ -8,7 +8,7 @@
 
 #import "GTRecommendViewController.h"
 
-@interface GTRecommendViewController () <UIScrollViewDelegate>
+@interface GTRecommendViewController () <UIScrollViewDelegate,UIGestureRecognizerDelegate>
 
 @end
 
@@ -37,6 +37,18 @@
     for (NSInteger i = 0; i < 5; i++) {
         [aScrollView addSubview:({
             UIView *view = [[UIView alloc] initWithFrame:CGRectMake(aScrollView.bounds.size.width * i, 0, aScrollView.bounds.size.width, aScrollView.bounds.size.height)];
+            
+            [view addSubview:({
+                UIView *view = [[UIView alloc] initWithFrame:CGRectMake(100, 200, 100, 100)];
+                view.backgroundColor = [UIColor yellowColor];
+                UITapGestureRecognizer *tapped = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                                         action:@selector(tapped:)];
+                tapped.delegate = self;
+                [view addGestureRecognizer:tapped];
+                view;
+            })];
+            
+            
             view.backgroundColor = [colorArray objectAtIndex:i];
             view;
         })];
@@ -45,6 +57,19 @@
     aScrollView.delegate = self;
     [self.view addSubview:aScrollView];
 }
+
+- (void)tapped:(UITapGestureRecognizer *)sender{
+    NSLog(@"%s",__func__);
+    
+}
+
+#pragma mark -
+#pragma mark UIGestureRecognizerDelegate
+
+- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer{
+    return NO;
+}
+
 
 #pragma mark -
 #pragma mark UIScrollViewDelegate
@@ -64,5 +89,6 @@
 - (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView{
     
 }
+
 
 @end

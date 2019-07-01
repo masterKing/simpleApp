@@ -22,15 +22,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
-    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    self.window.backgroundColor = [UIColor whiteColor];
-    
-    UITabBarController *aTabBarController = [[UITabBarController alloc] init];
-    
     ViewController *controller1 = [[ViewController alloc] init];
-    controller1.tabBarItem.title = @"新闻";
-    controller1.tabBarItem.image = [UIImage imageNamed:@"page"];
-    controller1.tabBarItem.selectedImage = [UIImage imageNamed:@"page_selected"];
     
     GTVideoViewController *controller2 = [[GTVideoViewController alloc] init];
     
@@ -42,10 +34,14 @@
     controller4.tabBarItem.image = [UIImage imageNamed:@"home"];
     controller4.tabBarItem.selectedImage = [UIImage imageNamed:@"home_selected"];
     
+    UITabBarController *aTabBarController = [[UITabBarController alloc] init];
     [aTabBarController setViewControllers:@[controller1,controller2,controller3,controller4]];
     aTabBarController.selectedIndex = 0;
     
     UINavigationController *aNavgationController = [[UINavigationController alloc] initWithRootViewController:aTabBarController];
+    
+    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    self.window.backgroundColor = [UIColor whiteColor];
     self.window.rootViewController = aNavgationController;
     [self.window makeKeyAndVisible];
     return YES;
