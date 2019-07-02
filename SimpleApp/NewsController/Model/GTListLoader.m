@@ -8,13 +8,14 @@
 
 #import "GTListLoader.h"
 #import <AFHTTPSessionManager.h>
+#import "GTListItem.h"
 
 @implementation GTListLoader
 
 - (void)loadListData
 {
-    NSString *urlString = @"http://127.0.0.1/1.2.9/tradeEnv.json";
-    
+    NSString *urlString = @"http://v.juhe.cn/toutiao/index?type=top&key=97ad001bfcc2082e2eeaf798bad3d54e";
+
     /*
      */
     NSURL *url = [NSURL URLWithString:urlString];
@@ -28,6 +29,8 @@
         NSError *jsonError = nil;
         id jsonObj = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonError];
         NSLog(@"%@",jsonObj);
+        
+        GTListItem *item = [[GTListItem alloc] init];
     
     }];
 
