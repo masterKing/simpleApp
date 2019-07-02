@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import "ViewController.h"
+#import "GTNewsViewController.h"
 #import "GTVideoViewController.h"
 #import "GTRecommendViewController.h"
 #import "WKWebViewController.h"
@@ -22,20 +22,16 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
-    ViewController *controller1 = [[ViewController alloc] init];
+    GTNewsViewController *controller1 = [[GTNewsViewController alloc] init];
     
     GTVideoViewController *controller2 = [[GTVideoViewController alloc] init];
     
     GTRecommendViewController *controller3 = [[GTRecommendViewController alloc] init];
     
-    WKWebViewController *controller4 = [[WKWebViewController alloc] init];
-    controller4.view.backgroundColor = [UIColor blueColor];
-    controller4.tabBarItem.title = @"我的";
-    controller4.tabBarItem.image = [UIImage imageNamed:@"home"];
-    controller4.tabBarItem.selectedImage = [UIImage imageNamed:@"home_selected"];
+    WKWebViewController *mineViewController = [[WKWebViewController alloc] init];
     
     UITabBarController *aTabBarController = [[UITabBarController alloc] init];
-    [aTabBarController setViewControllers:@[controller1,controller2,controller3,controller4]];
+    [aTabBarController setViewControllers:@[controller1,controller2,controller3,mineViewController]];
     aTabBarController.selectedIndex = 0;
     
     UINavigationController *aNavgationController = [[UINavigationController alloc] initWithRootViewController:aTabBarController];

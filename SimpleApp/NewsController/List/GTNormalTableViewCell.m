@@ -19,7 +19,8 @@
 
 @implementation GTNormalTableViewCell
 
-- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+{
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         [self.contentView addSubview:({
             self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 15, 300, 50)];
@@ -28,7 +29,7 @@
             self.titleLabel.textColor = [UIColor blackColor];
             self.titleLabel;
         })];
-        
+
         [self.contentView addSubview:({
             self.sourceLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 80, 50, 20)];
 //            self.sourceLabel.backgroundColor = [UIColor redColor];
@@ -36,7 +37,7 @@
             self.sourceLabel.textColor = [UIColor grayColor];
             self.sourceLabel;
         })];
-        
+
         [self.contentView addSubview:({
             self.commentLabel = [[UILabel alloc] initWithFrame:CGRectMake(100, 80, 50, 20)];
 //            self.commentLabel.backgroundColor = [UIColor redColor];
@@ -44,7 +45,7 @@
             self.commentLabel.textColor = [UIColor grayColor];
             self.commentLabel;
         })];
-        
+
         [self.contentView addSubview:({
             self.timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(150, 80, 50, 20)];
 //            self.timeLabel.backgroundColor = [UIColor redColor];
@@ -52,7 +53,7 @@
             self.timeLabel.textColor = [UIColor grayColor];
             self.timeLabel;
         })];
-        
+
         [self.contentView addSubview:({
             self.rightImageView = [[UIImageView alloc] initWithFrame:CGRectMake(330, 15, 70, 70)];
             self.rightImageView.backgroundColor = [UIColor greenColor];
@@ -67,25 +68,32 @@
             [self.deleteButton addTarget:self
                                   action:@selector(didClickDeleteButton:)
                         forControlEvents:UIControlEventTouchUpInside];
+
+            self.deleteButton.layer.cornerRadius = 10;
+            self.deleteButton.layer.masksToBounds = YES;
+            self.deleteButton.layer.borderColor = [UIColor lightGrayColor].CGColor;
+            self.deleteButton.layer.borderWidth = 2;
+
             self.deleteButton;
         })];
     }
     return self;
 }
 
-- (void)layoutTableViewCell{
+- (void)layoutTableViewCell
+{
     self.titleLabel.text = @"极客时间iOS开发";
-    
+
     self.sourceLabel.text = @"极客时间";
     [self.sourceLabel sizeToFit];
-    
+
     self.commentLabel.text = @"1888评论";
     [self.commentLabel sizeToFit];
     self.commentLabel.frame = CGRectMake(CGRectGetMaxX(self.sourceLabel.frame) + 15
                                          , self.commentLabel.frame.origin.y
                                          , self.commentLabel.bounds.size.width
                                          , self.commentLabel.bounds.size.height);
-    
+
     self.timeLabel.text = @"三分钟前";
     [self.timeLabel sizeToFit];
     self.timeLabel.frame = CGRectMake(CGRectGetMaxX(self.commentLabel.frame) + 15
@@ -96,9 +104,10 @@
     self.rightImageView.image = [UIImage imageNamed:@"timg.jpeg"];
 }
 
-- (void)didClickDeleteButton:(UIButton *)sender{
-    NSLog(@"%s",__func__);
-    
+- (void)didClickDeleteButton:(UIButton *)sender
+{
+    NSLog(@"%s", __func__);
+
     if ([self.delegate respondsToSelector:@selector(tableViewCell:didClickedDeleteButton:)]) {
         [self.delegate tableViewCell:self didClickedDeleteButton:sender];
     }

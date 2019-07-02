@@ -14,6 +14,19 @@
 
 @implementation WKWebViewController
 
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        self.view.backgroundColor = [UIColor blueColor];
+        self.tabBarItem.title = @"我的";
+        self.tabBarItem.image = [UIImage imageNamed:@"home"];
+        self.tabBarItem.selectedImage = [UIImage imageNamed:@"home_selected"];
+
+    }
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
