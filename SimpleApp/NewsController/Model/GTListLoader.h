@@ -10,12 +10,16 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class GTListItem;
+
+typedef void(^abc)(BOOL success,NSArray<GTListItem *> *dataArray);
+
 /**
  列表请求
  */
 @interface GTListLoader : NSObject
 
-- (void)loadListData;
+- (void)loadListDataWithCompleteBlock:(abc)finishBlock;
 
 @end
 

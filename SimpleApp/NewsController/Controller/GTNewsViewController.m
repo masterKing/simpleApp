@@ -16,6 +16,8 @@
 @interface GTNewsViewController () <UITableViewDataSource, UITableViewDelegate, GTNormalTableViewCellDelegate>
 @property (nonatomic, strong) NSMutableArray *array;
 @property (nonatomic, strong) UITableView *tableView;
+
+@property (nonatomic, strong) GTListLoader *listLoader;
 @end
 
 @implementation GTNewsViewController
@@ -52,7 +54,7 @@
     [self.view addSubview:aTableView];
     self.tableView = aTableView;
     
-    [[[GTListLoader alloc] init] loadListData];
+    self.listLoader = [[GTListLoader alloc] init];
 }
 
 #pragma mark -

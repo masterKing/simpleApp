@@ -12,7 +12,7 @@
 
 @implementation GTListLoader
 
-- (void)loadListData
+- (void)loadListDataWithCompleteBlock:(abc)finishBlock
 {
     NSString *urlString = @"http://v.juhe.cn/toutiao/index?type=top&key=97ad001bfcc2082e2eeaf798bad3d54e";
 
@@ -28,15 +28,23 @@
         
         NSError *jsonError = nil;
         id jsonObj = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonError];
-        NSLog(@"%@",jsonObj);
         
-        GTListItem *item = [[GTListItem alloc] init];
-    
+        NSArray *dataArray = jsonObj[@"result"][@"data"];
+        NSMutableArray *arrayM = [NSMutableArray array];
+        for (NSDictionary *info in dataArray) {
+            GTListItem *item = [[GTListItem alloc] init];
+            [item configWithDictionary:info];
+            [arrayM addObject:item];
+        }
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (finishBlock) {
+                finishBlock(error == nil, arrayM.copy);
+            }
+        });
     }];
 
     [dataTask resume];
-    
-    NSLog(@"%@", url);
     
     
     
@@ -50,6 +58,21 @@
         NSLog(@"%@",error);
     }];
     */
+}
+
+- (void)_archiveListDataWithArray:(NSArray *)array{
+    NSArray *pathArray = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
+    NSString *cachePath = [pathArray firstObject];
+    
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    
+    // 创建文件夹
+    NSString *dataPath = [cachePath stringByAppendingPathComponent:@"GTData"];
+    NSError *createError;
+    [fileManager createDirectoryAtPath:dataPath withIntermediateDirectories:YES attributes:nil error:&createError];
+    
+    // 创建文件
+        
 }
 
 @end
