@@ -12,10 +12,13 @@
 #import "GTNormalTableViewCell.h"
 #import "GTDeleteCellView.h"
 #import "GTListLoader.h"
+#import "GTListItem.h"
 
 @interface GTNewsViewController () <UITableViewDataSource, UITableViewDelegate, GTNormalTableViewCellDelegate>
-@property (nonatomic, strong) NSMutableArray *array;
+@property (nonatomic, strong) NSArray *array;
 @property (nonatomic, strong) UITableView *tableView;
+
+@property (nonatomic, strong) GTListLoader *listLoader;
 @end
 
 @implementation GTNewsViewController
@@ -31,10 +34,6 @@
         self.tabBarItem.image = [UIImage imageNamed:@"page"];
         self.tabBarItem.selectedImage = [UIImage imageNamed:@"page_selected"];
 
-        _array = [NSMutableArray array];
-        for (int i = 0; i < 20; i++) {
-            [_array addObject:@(i)];
-        }
     }
     return self;
 }
@@ -52,7 +51,15 @@
     [self.view addSubview:aTableView];
     self.tableView = aTableView;
     
-    [[[GTListLoader alloc] init] loadListData];
+    self.listLoader = [[GTListLoader alloc] init];
+    __weak typeof(self) weakself = self;
+    [self.listLoader loadListDataWithFinishBlock:^(BOOL success, NSArray<GTListItem *> *dataArray) {
+        __strong typeof(weakself) strongself = weakself;
+        
+        strongself.array = dataArray;
+        [strongself.tableView reloadData];
+        
+    }];
 }
 
 #pragma mark -
@@ -69,7 +76,8 @@
         aCell = [[GTNormalTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"UITableViewCellID"];
         aCell.delegate = self;
     }
-    [aCell layoutTableViewCell];
+    
+    [aCell layoutTableViewCellWithItem:self.array[indexPath.row]];
 
 //    CGFloat red = arc4random_uniform(255) / 255.0;
 //    CGFloat green = arc4random_uniform(255) / 255.0;
@@ -87,8 +95,12 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [self.navigationController pushViewController:({
+        
         GTDetailViewController *vc = [[GTDetailViewController alloc] init];
+        GTListItem *item = self.array[indexPath.row];
+        vc.urlString = item.url;
         vc;
+        
     }) animated:YES];
 }
 
@@ -106,7 +118,7 @@
     [view showDeleteViewFromPoint:rect.origin clickBlock:^{
         __strong typeof(self) strongself = weakself;
 
-        [strongself.array removeLastObject];
+//        [strongself.array removeLastObject];
 
         [strongself.tableView deleteRowsAtIndexPaths:@[[strongself.tableView indexPathForCell:cell]] withRowAnimation:UITableViewRowAnimationAutomatic];
     }];
