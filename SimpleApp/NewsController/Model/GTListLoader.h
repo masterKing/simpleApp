@@ -14,6 +14,10 @@ typedef void(^GTListLoaderFinishBlock)(BOOL success, NSArray<GTListItem *> *data
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class GTListItem;
+
+typedef void(^abc)(BOOL success,NSArray<GTListItem *> *dataArray);
+
 /**
  列表请求
  */

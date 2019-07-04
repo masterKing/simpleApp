@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface GTListItem : NSObject
+@interface GTListItem : NSObject <NSSecureCoding>
 @property (nonatomic, copy) NSString *category;
 @property (nonatomic, copy) NSString *thumbnail_pic_s;
 @property (nonatomic, copy) NSString *uniquekey;
