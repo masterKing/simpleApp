@@ -85,6 +85,12 @@
 
 - (void)layoutTableViewCellWithItem:(GTListItem *)item
 {
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:item.uniquekey]) {
+        self.titleLabel.textColor = [UIColor lightGrayColor];
+    }else{
+        self.titleLabel.textColor = [UIColor blackColor];
+    }
+    
     self.titleLabel.text = item.title;
 
     self.sourceLabel.text = item.author_name;
@@ -105,8 +111,38 @@
                                       , self.timeLabel.bounds.size.height);
 
 #warning
-    NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:item.thumbnail_pic_s]];
-    self.rightImageView.image = [UIImage imageWithData:data];
+    
+    /*
+    NSThread *downloadImageThread = [[NSThread alloc] initWithBlock:^{
+        NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:item.thumbnail_pic_s]];
+        self.rightImageView.image = [UIImage imageWithData:data];
+    }];
+    downloadImageThread.name = @"downloadImageThread";
+    [downloadImageThread start];
+     */
+    
+    /*
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:item.thumbnail_pic_s]];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.rightImageView.image = [UIImage imageWithData:data];
+        });
+    });
+     */
+    
+    /*
+    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+    NSBlockOperation *op = [NSBlockOperation blockOperationWithBlock:^{
+        NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:item.thumbnail_pic_s]];
+        
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            self.rightImageView.image = [UIImage imageWithData:data];
+        }];
+    }];
+    [queue addOperation:op];
+     */
+    
+    [self.rightImageView sd_setImageWithURL:[NSURL URLWithString:item.thumbnail_pic_s] completed:nil];
 }
 
 - (void)didClickDeleteButton:(UIButton *)sender

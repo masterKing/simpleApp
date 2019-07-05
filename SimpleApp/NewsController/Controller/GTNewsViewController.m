@@ -94,10 +94,13 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    GTListItem *item = self.array[indexPath.row];
+    
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:item.uniquekey];
+
     [self.navigationController pushViewController:({
         
         GTDetailViewController *vc = [[GTDetailViewController alloc] init];
-        GTListItem *item = self.array[indexPath.row];
         vc.urlString = item.url;
         vc;
         

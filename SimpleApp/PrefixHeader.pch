@@ -16,6 +16,7 @@
 #pragma mark 导入头文件
 
 #import <MJExtension.h>
+#import <SDWebImage.h>
 
 
 #pragma mark -

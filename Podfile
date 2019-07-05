@@ -9,5 +9,6 @@ target 'SimpleApp' do
 
   pod 'AFNetworking'
   pod 'MJExtension'
-
+  pod 'SDWebImage'
+  
 end

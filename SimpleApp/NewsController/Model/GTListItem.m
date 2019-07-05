@@ -23,19 +23,21 @@
 #pragma mark -
 #pragma mark NSSecureCoding
 
-- (void)encodeWithCoder:(NSCoder *)aCoder{
-    [aCoder encodeObject:self.category forKey:@"category"];
-}
-
-- (nullable instancetype)initWithCoder:(NSCoder *)aDecoder{
-    if (self = [super init]) {
-        self.category = [aDecoder decodeObjectForKey:@"category"];
-    }
-    return self;
-}
+//- (void)encodeWithCoder:(NSCoder *)aCoder{
+//    [aCoder encodeObject:self.category forKey:@"category"];
+//}
+//
+//- (nullable instancetype)initWithCoder:(NSCoder *)aDecoder{
+//    if (self = [super init]) {
+//        self.category = [aDecoder decodeObjectForKey:@"category"];
+//    }
+//    return self;
+//}
 
 + (BOOL)supportsSecureCoding{
     return YES;
 }
+
+MJExtensionCodingImplementation
 
 @end

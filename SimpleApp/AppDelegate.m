@@ -22,6 +22,10 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
+    // 将APP安装包内的版本号,记录到沙盒内
+    NSString *versionString = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+    [[NSUserDefaults standardUserDefaults] setObject:versionString forKey:@"CFBundleShortVersionString"];
+    
     GTNewsViewController *controller1 = [[GTNewsViewController alloc] init];
     
     GTVideoViewController *controller2 = [[GTVideoViewController alloc] init];
