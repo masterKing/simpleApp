@@ -62,10 +62,10 @@
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-    NSLog(@"%s",__func__);
-    [SDImageCache.sharedImageCache clearWithCacheType:SDImageCacheTypeAll completion:^{
-        NSLog(@"SDImageCacheTypeAll缓存清除成功");
-    }];
+//    NSLog(@"%s",__func__);
+//    [SDImageCache.sharedImageCache clearWithCacheType:SDImageCacheTypeAll completion:^{
+//        NSLog(@"SDImageCacheTypeAll缓存清除成功");
+//    }];
 }
 
 
@@ -81,10 +81,6 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-    NSLog(@"%s",__func__);
-    [SDImageCache.sharedImageCache clearWithCacheType:SDImageCacheTypeAll completion:^{
-        NSLog(@"SDImageCacheTypeAll缓存清除成功");
-    }];
 }
 
 #pragma mark -

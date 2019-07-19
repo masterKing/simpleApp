@@ -11,6 +11,7 @@
 		31367092228A933400C6E532 /* GTRecommendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31367091228A933400C6E532 /* GTRecommendViewController.m */; };
 		31367095228AB41A00C6E532 /* GTNormalTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 31367094228AB41A00C6E532 /* GTNormalTableViewCell.m */; };
 		31674FCF22CEEA9200199214 /* ListData.json in Resources */ = {isa = PBXBuildFile; fileRef = 31674FCE22CEEA9200199214 /* ListData.json */; };
+		318C587322E1CB9600EB705A /* GTVideoCoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = 318C587222E1CB9600EB705A /* GTVideoCoverView.m */; };
 		31B34B8D22CB45DC00136903 /* GTListItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 31B34B8C22CB45DC00136903 /* GTListItem.m */; };
 		31BA5A76226E822D00EB3CAF /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31BA5A75226E822D00EB3CAF /* WebKit.framework */; };
 		31BA928622685B880024CF56 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 31BA928522685B880024CF56 /* AppDelegate.m */; };
@@ -37,6 +38,8 @@
 		31367094228AB41A00C6E532 /* GTNormalTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GTNormalTableViewCell.m; sourceTree = "<group>"; };
 		31674FCD22CDF1BC00199214 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		31674FCE22CEEA9200199214 /* ListData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = ListData.json; sourceTree = "<group>"; };
+		318C587122E1CB9600EB705A /* GTVideoCoverView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GTVideoCoverView.h; sourceTree = "<group>"; };
+		318C587222E1CB9600EB705A /* GTVideoCoverView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GTVideoCoverView.m; sourceTree = "<group>"; };
 		31B34B8B22CB45DC00136903 /* GTListItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GTListItem.h; sourceTree = "<group>"; };
 		31B34B8C22CB45DC00136903 /* GTListItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GTListItem.m; sourceTree = "<group>"; };
 		31BA5A75226E822D00EB3CAF /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
@@ -76,6 +79,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		318C586F22E1CAB000EB705A /* VideoController */ = {
+			isa = PBXGroup;
+			children = (
+				318C587022E1CB6000EB705A /* View */,
+				3136708D228A75F900C6E532 /* GTVideoViewController.h */,
+				3136708E228A75F900C6E532 /* GTVideoViewController.m */,
+			);
+			path = VideoController;
+			sourceTree = "<group>";
+		};
+		318C587022E1CB6000EB705A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				318C587122E1CB9600EB705A /* GTVideoCoverView.h */,
+				318C587222E1CB9600EB705A /* GTVideoCoverView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		31B34B8922CB455100136903 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -129,6 +151,7 @@
 		31BA928322685B880024CF56 /* SimpleApp */ = {
 			isa = PBXGroup;
 			children = (
+				318C586F22E1CAB000EB705A /* VideoController */,
 				31D5E85222CA6D3B0088C62F /* NewsController */,
 				31BA9367226DE0D60024CF56 /* magazineHtml */,
 				31BA928422685B880024CF56 /* AppDelegate.h */,
@@ -136,8 +159,6 @@
 				31BA9369226DE1E90024CF56 /* WKWebViewController.h */,
 				31BA936A226DE1E90024CF56 /* WKWebViewController.m */,
 				31BA936B226DE1E90024CF56 /* WKWebViewController.xib */,
-				3136708D228A75F900C6E532 /* GTVideoViewController.h */,
-				3136708E228A75F900C6E532 /* GTVideoViewController.m */,
 				31367090228A933400C6E532 /* GTRecommendViewController.h */,
 				31367091228A933400C6E532 /* GTRecommendViewController.m */,
 				31BA928D22685B890024CF56 /* Assets.xcassets */,
@@ -282,6 +303,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				31C10D8C22C84D3C0074623D /* GTDetailViewController.m in Sources */,
+				318C587322E1CB9600EB705A /* GTVideoCoverView.m in Sources */,
 				31D5E85122C8ED270088C62F /* GTDeleteCellView.m in Sources */,
 				31367095228AB41A00C6E532 /* GTNormalTableViewCell.m in Sources */,
 				31BA928922685B880024CF56 /* GTNewsViewController.m in Sources */,
