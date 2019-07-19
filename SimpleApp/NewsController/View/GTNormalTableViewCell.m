@@ -142,17 +142,19 @@
     [queue addOperation:op];
      */
     
-//    [self.rightImageView sd_setImageWithURL:[NSURL URLWithString:item.thumbnail_pic_s] completed:nil];
+    self.rightImageView.sd_imageIndicator = [SDWebImageProgressIndicator defaultIndicator];
+    self.rightImageView.sd_imageTransition = [SDWebImageTransition flipFromLeftTransition];
     [self.rightImageView sd_setImageWithURL:[NSURL URLWithString:item.thumbnail_pic_s]
                            placeholderImage:[UIImage imageNamed:@"video_selected"]
-                                    options:SDWebImageAllowInvalidSSLCertificates
+                                    options:SDWebImageForceTransition
                                     context:nil
                                    progress:nil
                                   completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
                                       
-                                      NSLog(@"%zd",cacheType);
+//                                      NSLog(@"%zd",cacheType);
                                      
                                   }];
+    
 }
 
 - (void)didClickDeleteButton:(UIButton *)sender

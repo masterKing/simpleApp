@@ -36,7 +36,7 @@
     
     NSURL *finalUrl = [NSURL URLWithString:@"#123" relativeToURL:url];
     
-    NSURLRequest *urlRequest = [NSURLRequest requestWithURL:finalUrl];
+    NSURLRequest *urlRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://apphtml.fxeye.com/market?t=209003&u=1099612111&code="]];
     [self.webView loadRequest:urlRequest];
 }
 
