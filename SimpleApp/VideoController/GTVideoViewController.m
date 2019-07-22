@@ -54,8 +54,8 @@
     GTVideoCoverView *aCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"GTVideoCoverView" forIndexPath:indexPath];
     
     aCell.backgroundColor = [UIColor redColor];
-    
-    [aCell layoutWithVideoCoverUrl:@"https://github.com/masterKing/markDownPictures/blob/master/videoCover.jpg?raw=true" videoUrl:@"http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4"];
+    [aCell layoutWithVideoCoverUrl:@"https://raw.githubusercontent.com/masterKing/markDownPictures/master/videoCover.png"
+                          videoUrl:@"http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4"];
     
     return aCell;
 }
