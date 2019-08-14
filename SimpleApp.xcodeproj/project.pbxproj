@@ -22,6 +22,7 @@
 		31BA9368226DE0D60024CF56 /* magazineHtml in Resources */ = {isa = PBXBuildFile; fileRef = 31BA9367226DE0D60024CF56 /* magazineHtml */; };
 		31BA936C226DE1E90024CF56 /* WKWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31BA936A226DE1E90024CF56 /* WKWebViewController.m */; };
 		31BA936D226DE1E90024CF56 /* WKWebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31BA936B226DE1E90024CF56 /* WKWebViewController.xib */; };
+		31BDE5272303E36500622C99 /* GTVideoPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 31BDE5262303E36500622C99 /* GTVideoPlayer.m */; };
 		31C10D8C22C84D3C0074623D /* GTDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31C10D8B22C84D3C0074623D /* GTDetailViewController.m */; };
 		31D5E85122C8ED270088C62F /* GTDeleteCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31D5E85022C8ED270088C62F /* GTDeleteCellView.m */; };
 		31D5E85822CA717D0088C62F /* GTListLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 31D5E85722CA717D0088C62F /* GTListLoader.m */; };
@@ -56,6 +57,8 @@
 		31BA9369226DE1E90024CF56 /* WKWebViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WKWebViewController.h; sourceTree = "<group>"; };
 		31BA936A226DE1E90024CF56 /* WKWebViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WKWebViewController.m; sourceTree = "<group>"; };
 		31BA936B226DE1E90024CF56 /* WKWebViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WKWebViewController.xib; sourceTree = "<group>"; };
+		31BDE5252303E36500622C99 /* GTVideoPlayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GTVideoPlayer.h; sourceTree = "<group>"; };
+		31BDE5262303E36500622C99 /* GTVideoPlayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GTVideoPlayer.m; sourceTree = "<group>"; };
 		31C10D8A22C84D3C0074623D /* GTDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GTDetailViewController.h; sourceTree = "<group>"; };
 		31C10D8B22C84D3C0074623D /* GTDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GTDetailViewController.m; sourceTree = "<group>"; };
 		31D5E84F22C8ED270088C62F /* GTDeleteCellView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GTDeleteCellView.h; sourceTree = "<group>"; };
@@ -85,6 +88,8 @@
 				318C587022E1CB6000EB705A /* View */,
 				3136708D228A75F900C6E532 /* GTVideoViewController.h */,
 				3136708E228A75F900C6E532 /* GTVideoViewController.m */,
+				31BDE5252303E36500622C99 /* GTVideoPlayer.h */,
+				31BDE5262303E36500622C99 /* GTVideoPlayer.m */,
 			);
 			path = VideoController;
 			sourceTree = "<group>";
@@ -314,6 +319,7 @@
 				31BA929422685B890024CF56 /* main.m in Sources */,
 				31BA928622685B880024CF56 /* AppDelegate.m in Sources */,
 				31BA936C226DE1E90024CF56 /* WKWebViewController.m in Sources */,
+				31BDE5272303E36500622C99 /* GTVideoPlayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
