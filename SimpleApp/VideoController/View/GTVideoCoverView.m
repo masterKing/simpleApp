@@ -14,6 +14,8 @@
 @property (nonatomic, strong) UIImageView *coverView;
 @property (nonatomic, strong) UIImageView *playButton;
 
+@property (nonatomic, strong) GTVideoToolbar *toolbar;
+
 @property (nonatomic, copy) NSString *videoUrl;
 
 @end
@@ -43,12 +45,17 @@
         [self.contentView addSubview:self.coverView];
         [self.coverView addSubview:self.playButton];
         
-        self.coverView.frame = CGRectMake(0, 0, frame.size.width, frame.size.height);
+        self.coverView.frame = CGRectMake(0, 0, frame.size.width, frame.size.height - GTVideoToolbarHeight);
         CGFloat w = 60;
         CGFloat h = w;
         CGFloat x = (frame.size.width - w) * 0.5;
-        CGFloat y = (frame.size.height - h) * 0.5;
+        CGFloat y = (frame.size.height - h - GTVideoToolbarHeight) * 0.5;
         self.playButton.frame = CGRectMake(x, y, w, h);
+        
+        [self addSubview:({
+            _toolbar = [[GTVideoToolbar alloc] initWithFrame:CGRectMake(0, _coverView.bounds.size.height, _coverView.bounds.size.width, GTVideoToolbarHeight)];
+            _toolbar;
+        })];
         
         UITapGestureRecognizer *tapped = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(_tapped:)];
         [self addGestureRecognizer:tapped];
@@ -77,6 +84,8 @@
 //    [_coverView sd_setImageWithURL:[NSURL URLWithString:videoCoverUrl] placeholderImage:nil options:SDWebImageAllowInvalidSSLCertificates];
     
     [_coverView sd_setImageWithURL:[NSURL URLWithString:videoCoverUrl]];
+    
+    [_toolbar layoutWithModel:nil];
 }
 
 
