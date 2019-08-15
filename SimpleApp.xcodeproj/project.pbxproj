@@ -13,6 +13,7 @@
 		31674FCF22CEEA9200199214 /* ListData.json in Resources */ = {isa = PBXBuildFile; fileRef = 31674FCE22CEEA9200199214 /* ListData.json */; };
 		318C587322E1CB9600EB705A /* GTVideoCoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = 318C587222E1CB9600EB705A /* GTVideoCoverView.m */; };
 		31A5F46623040A5F008A88C3 /* GTVideoToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 31A5F46523040A5F008A88C3 /* GTVideoToolbar.m */; };
+		31A5F46C230543E5008A88C3 /* GTScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 31A5F46B230543E5008A88C3 /* GTScreen.m */; };
 		31B34B8D22CB45DC00136903 /* GTListItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 31B34B8C22CB45DC00136903 /* GTListItem.m */; };
 		31BA5A76226E822D00EB3CAF /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31BA5A75226E822D00EB3CAF /* WebKit.framework */; };
 		31BA928622685B880024CF56 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 31BA928522685B880024CF56 /* AppDelegate.m */; };
@@ -44,6 +45,8 @@
 		318C587222E1CB9600EB705A /* GTVideoCoverView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GTVideoCoverView.m; sourceTree = "<group>"; };
 		31A5F46423040A5F008A88C3 /* GTVideoToolbar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GTVideoToolbar.h; sourceTree = "<group>"; };
 		31A5F46523040A5F008A88C3 /* GTVideoToolbar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GTVideoToolbar.m; sourceTree = "<group>"; };
+		31A5F46A230543E5008A88C3 /* GTScreen.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GTScreen.h; sourceTree = "<group>"; };
+		31A5F46B230543E5008A88C3 /* GTScreen.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GTScreen.m; sourceTree = "<group>"; };
 		31B34B8B22CB45DC00136903 /* GTListItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GTListItem.h; sourceTree = "<group>"; };
 		31B34B8C22CB45DC00136903 /* GTListItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GTListItem.m; sourceTree = "<group>"; };
 		31BA5A75226E822D00EB3CAF /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
@@ -176,6 +179,8 @@
 				31BA929222685B890024CF56 /* Info.plist */,
 				31BA929322685B890024CF56 /* main.m */,
 				31674FCD22CDF1BC00199214 /* PrefixHeader.pch */,
+				31A5F46A230543E5008A88C3 /* GTScreen.h */,
+				31A5F46B230543E5008A88C3 /* GTScreen.m */,
 			);
 			path = SimpleApp;
 			sourceTree = "<group>";
@@ -312,6 +317,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				31A5F46C230543E5008A88C3 /* GTScreen.m in Sources */,
 				31C10D8C22C84D3C0074623D /* GTDetailViewController.m in Sources */,
 				318C587322E1CB9600EB705A /* GTVideoCoverView.m in Sources */,
 				31D5E85122C8ED270088C62F /* GTDeleteCellView.m in Sources */,

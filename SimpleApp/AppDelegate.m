@@ -40,7 +40,7 @@
     
     UITabBarController *aTabBarController = [[UITabBarController alloc] init];
     [aTabBarController setViewControllers:@[controller1,controller2,controller3,mineViewController]];
-    aTabBarController.selectedIndex = 0;
+    aTabBarController.selectedIndex = 1;
     
     UINavigationController *aNavgationController = [[UINavigationController alloc] initWithRootViewController:aTabBarController];
     
