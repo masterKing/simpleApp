@@ -10,4 +10,21 @@
 
 @implementation GTScreen
 
+//- (CGSize)sizeFor65Inch{
+//
+//};
+//- (CGSize)sizeFor65Inch{
+//
+//};
+//- (CGSize)sizeFor65Inch{
+//
+//};
+//- (CGSize)sizeFor65Inch{
+//
+//};
+//- (CGSize)sizeFor65Inch{
+//
+//};
+
+
 @end

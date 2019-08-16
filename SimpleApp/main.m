@@ -11,6 +11,7 @@
 
 int main(int argc, char * argv[]) {
     @autoreleasepool {
-        return UIApplicationMain(argc, argv, nil, NSStringFromClass([AppDelegate class]));
+        NSLog(@"argc == %d,argv == %s",argc,*argv);
+        return UIApplicationMain(argc, argv, @"MYApplication", NSStringFromClass([AppDelegate class]));
     }
 }

@@ -40,7 +40,9 @@
     
     UITabBarController *aTabBarController = [[UITabBarController alloc] init];
     [aTabBarController setViewControllers:@[controller1,controller2,controller3,mineViewController]];
-    aTabBarController.selectedIndex = 1;
+    aTabBarController.selectedIndex = 0;
+    
+    [[UIApplication sharedApplication] statusBarOrientationAnimationDuration];
     
     UINavigationController *aNavgationController = [[UINavigationController alloc] initWithRootViewController:aTabBarController];
     
