@@ -31,13 +31,15 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"purchase" ofType:@"html" inDirectory:@"magazineHtml"];
-    NSURL *url = [NSURL fileURLWithPath:filePath];
-    
-    NSURL *finalUrl = [NSURL URLWithString:@"#123" relativeToURL:url];
-    
-    NSURLRequest *urlRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://apphtml.fxeye.com/market?t=209003&u=1099612111&code="]];
-    [self.webView loadRequest:urlRequest];
+//    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"purchase" ofType:@"html" inDirectory:@"magazineHtml"];
+//    NSURL *url = [NSURL fileURLWithPath:filePath];
+//    NSURL *finalUrl = [NSURL URLWithString:@"#123" relativeToURL:url];
+//    //[NSURL URLWithString:@"http://apphtml.fxeye.com/market?t=209003&u=1099612111&code="]
+//    NSURLRequest *urlRequest = [NSURLRequest requestWithURL:finalUrl];
+//    [self.webView loadRequest:urlRequest];
+
+    NSURL *url = [NSURL URLWithString:@"https://img.fxeye.com/test/attach/2018/05/636628525991159446/UMA636628525991159446_26067.pdf"];
+    [self.webView loadRequest:[NSURLRequest requestWithURL:url]];
 }
 
 /*

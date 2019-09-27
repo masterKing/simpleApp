@@ -16,7 +16,7 @@
 {
     self = [super init];
     if (self) {
-        NSLog(@"啦啦啦啦");
+        NSLog(@"%s",__func__);
     }
     return self;
 }

@@ -65,6 +65,13 @@
     
     [self addLocalNotice];
     
+    NSString *string = @"practice://www.baidu.com";
+    NSURL *url = [NSURL URLWithString:string];
+    if ([[UIApplication sharedApplication] canOpenURL:url]) {
+        [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:nil];
+    }else{
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://192.168.1.76/web/"] options:@{} completionHandler:nil];
+    }
 }
 
 - (void)addLocalNotice {

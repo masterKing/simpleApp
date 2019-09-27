@@ -13,6 +13,7 @@
 #import "WKWebViewController.h"
 #import <UserNotifications/UserNotifications.h>
 #import <SDWebImage.h>
+#import "GTSplashView.h"
 
 @interface AppDelegate ()
 
@@ -31,11 +32,8 @@
     [[NSUserDefaults standardUserDefaults] setObject:versionString forKey:@"CFBundleShortVersionString"];
     
     GTNewsViewController *controller1 = [[GTNewsViewController alloc] init];
-    
     GTVideoViewController *controller2 = [[GTVideoViewController alloc] init];
-    
     GTRecommendViewController *controller3 = [[GTRecommendViewController alloc] init];
-    
     WKWebViewController *mineViewController = [[WKWebViewController alloc] init];
     
     UITabBarController *aTabBarController = [[UITabBarController alloc] init];
@@ -50,6 +48,17 @@
     self.window.backgroundColor = [UIColor whiteColor];
     self.window.rootViewController = aNavgationController;
     [self.window makeKeyAndVisible];
+    
+//    GTSplashView *splashView =  [[GTSplashView alloc] initWithFrame:UIScreen.mainScreen.bounds];
+//    [self.window addSubview:splashView];
+    
+    NSDictionary *dic = [[NSUserDefaults standardUserDefaults] objectForKey:@"launchOptions"];
+    NSLog(@"11111111111%@",dic);
+    if (launchOptions) {
+        [[NSUserDefaults standardUserDefaults] setObject:launchOptions forKey:@"launchOptions"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
+
     return YES;
 }
 
@@ -106,5 +115,16 @@
         [[UIApplication sharedApplication] registerUserNotificationSettings:setting];
     }
 }
+
+#pragma mark -
+#pragma mark open url
+
+- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options{
+    
+    NSLog(@"url == %@\noptions == %@",url,options);
+    
+    return YES;
+}
+
 
 @end
